@@ -11,9 +11,6 @@
 #include <stdlib.h>
 #include <errno.h>
 
-//? "ls / and ls ////// the same"
-//https://uk.wikipedia.org/wiki/%D0%9C%D0%B0%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0
-//macro
 #define SEP "\033[0;33m|\033[0m"
 #define FORMAT(explanation, code) {\
 if (vrb) { \
@@ -24,9 +21,7 @@ code;\
 if (vrb) printf("\n");\
 }
 
-// https://www.gnu.org/software/libc/manual/html_node/Testing-File-Type.html
 void pr_mode(mode_t mode, bool vrb) {
-  // S_IFMT is a bit mask for file type (use only bits for determine a type of the file) 
   switch (mode & S_IFMT) {
   case S_IFREG: vrb ? printf("regular ") : printf("-"); break;
   case S_IFDIR: vrb ? printf("directory ") : printf("d"); break;
@@ -90,7 +85,7 @@ int main(int argc, char const* argv[]) {
     struct group* gr = getgrgid(sb.st_gid);
     FORMAT("group: ", printf("%s ", (gr == NULL) ? "unknown " : gr->gr_name));
     FORMAT("size in bytes: ", printf("%ld ", sb.st_size));
-    FORMAT("modify time: ", printf("%s ", strtok(ctime(&sb.st_mtime), "\n")));// remove \n from string
+    FORMAT("modify time: ", printf("%s ", strtok(ctime(&sb.st_mtime), "\n")));
     FORMAT("inode number: ", printf("%ld ", sb.st_ino));
     FORMAT("file name: ", printf("%s\n", entry->d_name));
   }

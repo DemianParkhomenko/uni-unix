@@ -1,3 +1,4 @@
+//gcc ./system.c -o system.out; ./system.out tree
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
-//gcc ./system.c -o system.out; ./system.out tree
 
 int main(int argc, char const* argv[]) {
   if (argc < 2) {
